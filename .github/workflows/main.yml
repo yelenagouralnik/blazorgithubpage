@@ -23,17 +23,10 @@ jobs:
     # publishes Blazor project to the release-folder
     - name: Publish .NET Core Project
       run: dotnet publish blazorgithubpages.csproj -c Release -o release --nologo
-     # change base tag in all html files to include subfolder
-    - name: Change base tag
-      working-directory: release/output/wwwroot
-      run: |
-        find . -name "*.html" | while read htmlFile; do
-            sed -i 's/<base href="\/"/<base href="\/blazorgithubpage\/"/g' $htmlFile
-            sed -i 's/<script type="text\/javascript">var Module; window.__wasmmodulecallback__(); delete window.__wasmmodulecallback__;<\/script><script src="_framework\/dotnet.5.0.1.js" defer="" integrity="sha256-SWZOE2EsCqc\/7dPgJrcFqUvVvdeJ9cipeZ2NFMC9v2s=" crossorigin="anonymous"><\/script>//g' $htmlFile
-        done
+    
     # changes the base-tag in index.html from '/' to 'BlazorGitHubPagesDemo' to match GitHub Pages repository subdirectory
-    #- name: Change base-tag in index.html from / to blazorgithubpage
-    #  run: sed -i 's/<base href="\/" \/>/<base href="\/blazorgithubpage\/" \/>/g' release/wwwroot/index.html
+    - name: Change base-tag in index.html from / to blazorgithubpage
+      run: sed -i 's/<base href="\/" \/>/<base href="\/blazorgithubpage\/" \/>/g' release/wwwroot/index.html
     
     # copy index.html to 404.html to serve the same file when  file is not found
     - name: copy index.html to 404.html
