@@ -28,5 +28,11 @@
     "date": "2020-01-05",
     "temperatureC": 50,
     "summary": "Slightly Chilly"
+  },
+  {
+    "date": "2020-01-06",
+    "temperatureC": 50,
+    "summary": "Slightly Chilly"
   }
+
 ]
